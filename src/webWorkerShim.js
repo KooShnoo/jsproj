@@ -1,4 +1,5 @@
-// https://github.com/microsoft/monaco-editor/blob/HEAD/docs/integrate-esm.md#using-vite
+// Web Worker support for monaco.
+// See: https://github.com/microsoft/monaco-editor/blob/HEAD/docs/integrate-esm.md#using-vite
 
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
