@@ -74,5 +74,4 @@ interface Timer {
 
 type soa =  number;
 
-// TODO this syntax is sus, make sure it's okay
-export default async function initJasmine(): () => Promise<JsApiReporter>;
+export default function initJasmine(): () => Promise<JsApiReporter>;

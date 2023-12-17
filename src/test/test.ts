@@ -57,7 +57,7 @@ async function exportToGlobal(src: string) {
 
 export default async function testCode(src: string, spec: string) {
   // Jasmime must be reinitialized every time you run it.
-  const runTests = await initJasmine();
+  const runTests = initJasmine();
   // Cut out the first line, which tries to `import` the example code. We'll use global scope instead.
   const specTrimmed = spec.replace(/[\w\W]+?\n+?/,"");
   await exportToGlobal(src);
