@@ -24,6 +24,7 @@
   "dependencies": {
     "@exercism/javascript": "github:exercism/javascript",
     "jasmine-core": "^5.1.1",
+    "marked": "^11.1.0",
     "monaco-editor": "^0.45.0",
     "three": "^0.159.0"
   }

@@ -14,7 +14,9 @@ export default function initJasmine() {
   for (const property in jasmineInterface) {
     window[property] = jasmineInterface[property];
   }
+  // jest -> jasmine aliases
   window.test = window.it;
+  window.xtest = window.it;
 
   return async () => {
     await env.execute();
