@@ -5,7 +5,7 @@
 
 // TODO(strager): Make this configurable.
 // For build instructions, see website/wasm/README.md.
-let VSCODE_WASM_MODULE_PATH = "dist/quick-lint-js-vscode.wasm";
+let WASM_MODULE_PATH = "quick-lint-js-vscode.wasm";
 
 export class DocumentLinterDisposed extends Error {}
 
@@ -13,7 +13,7 @@ export class DocumentLinterDisposed extends Error {}
 export default async function createProcessFactoryAsync() {
   // Browser.
   let wasmModule = await WebAssembly.compileStreaming(
-    fetch(VSCODE_WASM_MODULE_PATH)
+    fetch(WASM_MODULE_PATH)
   );
   return new ProcessFactory(wasmModule);
 }
