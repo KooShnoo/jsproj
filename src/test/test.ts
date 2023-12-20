@@ -37,7 +37,8 @@
 // }
 
 const enc = new TextEncoder();
-import initJasmine, { JsApiReporter } from "../test/jasmine_setup";
+import initJasmine from "../test/jasmine_setup";
+import { JsApiReporter } from "../types/jasmine_setup";
 
 export function formatSpecs(report: JsApiReporter) {
   const spec_results = document.createElement('div');
