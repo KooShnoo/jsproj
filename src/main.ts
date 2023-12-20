@@ -11,6 +11,12 @@ const instructions_element = document.getElementById('instructions')!;
 const editor_element = document.getElementById('editor')!;
 const errors_element = document.getElementById('errors')!;
 const next_problem_element = document.getElementById('next')!;
+const title_element = document.getElementById('title')!;
+const about_element = document.getElementById('about')!;
+
+const toggleAbout = () => about_element.classList.toggle('hidden');
+title_element.onclick = toggleAbout;
+about_element.onclick = toggleAbout;
 
 next_problem_element.onclick = nextProblem;
 

@@ -42,6 +42,8 @@ import { JsApiReporter } from "../types/jasmine_setup";
 
 export function formatSpecs(report: JsApiReporter) {
   const spec_results = document.createElement('div');
+  spec_results.style.height = '100%';
+  spec_results.style.overflow = 'scroll';
   // i miss react...
   report.specs().forEach(spec => {
     const spec_result_element = document.createElement('p');

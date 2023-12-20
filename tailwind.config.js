@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         "editor-background": "#1E1E1E",
-        "widget-border": "#303031",
+        "widget-border": "#303030",
       },
     },
   },

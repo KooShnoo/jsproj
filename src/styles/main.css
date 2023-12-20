@@ -2,13 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Pokemon";
+  src: url('Pokemon_GB.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @layer base {
 
-  #instructions :is(h1, h2, h3, h4, h5, h6, p, ul, a) {
-    @apply pb-2
-  }
   h1 {
-    @apply text-4xl font-bold
+    @apply text-2xl font-bold
   }
 
   a {
@@ -21,5 +25,33 @@
 
   li::before {
     @apply content-['•'] px-2
+  }
+
+  table {
+    @apply border-2
+  }
+
+  thead {
+    @apply bg-[#131313] border-b-2 border-widget-border;
+  }
+
+  td, th {
+    @apply px-1
+  }
+
+  table td + td { 
+    @apply border-l-2 border-widget-border
+  }
+}
+
+@layer utilities {
+  .framed {
+    border-width: 21px;
+  border-image: url(https://raw.githubusercontent.com/luttje/css-pokemon-gameboy/main/src/images/frame-hd.png) 42 round;
+  }
+  
+  .bluified {
+    color: aliceblue;
+    filter: brightness(0) saturate(100%) invert(41%) sepia(40%) saturate(1844%) hue-rotate(193deg) brightness(101%) contrast(93%);
   }
 }
