@@ -21,21 +21,27 @@ const renderer = new THREE.WebGLRenderer({alpha: true});
 renderer.setSize(threeWidth, threeHeight);
 three_container.appendChild(renderer.domElement);
 
-
 const glb = new GLTFLoader();
-let pika = await glb.loadAsync('sableye.glb');
-scene.add(pika.scene);
-pika.scene.children[0].scale.setScalar(1);
-const pikaMesh = scene.children[0].children[0].children[0];
-// @ts-expect-error three isn't type-safe
-pikaMesh.children.forEach((child) => child.material.metalness = 0);
+async function loadModel(modelPath: string) {
+  const model = await glb.loadAsync(modelPath);
+  scene.add(model.scene);
+  model.scene.children[0].scale.setScalar(1);
+  const modelMesh = scene.children[0].children[0].children[0];
+  // @ts-expect-error three isn't type-safe
+  modelMesh.children.forEach((child) => child.material.metalness = 0);
+  model.scene.visible = false;
+  return model;
+}
 
-// const mixer = new THREE.AnimationMixer(pika_scene);
-// const action = mixer.clipAction(pika_scene.animations[0]);
-// action.play();
 
-const mixer = new THREE.AnimationMixer(pika.scene);
-const action = mixer.clipAction(pika.animations[4]);
+
+const pika = await loadModel('pika.glb');
+pika.scene.visible = true;
+const sable = await loadModel('sableye.glb');
+
+const pikaMixer = new THREE.AnimationMixer(pika.scene);
+const sableMixer = new THREE.AnimationMixer(sable.scene);
+const action = pikaMixer.clipAction(pika.animations[4]);
 action.play();
 
 const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 3);
@@ -50,36 +56,63 @@ window.scene = scene;
 //@ts-expect-error modifying window
 window.camera = camera;
 window.THREE = THREE;
-//@ts-expect-error modifying window
-window.mixer = mixer;
+// //@ts-expect-error modifying window
+// window.mixer = mixer;
 //@ts-expect-error modifying window
 window.pika = pika;
 
-const acts = pika.animations.map(anim => mixer.clipAction(anim));
+const pikaActs = pika.animations.map(anim => pikaMixer.clipAction(anim));
+const sableActs = sable.animations.map(anim => pikaMixer.clipAction(anim));
+
+let level = 0;
+export async function upgrade() {
+  switch (level) {
+  case 0: {
+    pikaMixer.stopAllAction();
+    pikaActs[0].play();
+    break;
+  }
+  case 1: {
+    pikaMixer.stopAllAction();
+    pikaActs[3].play();
+    break;
+  }
+  case 2: {
+    pika.scene.visible = false;
+    sable.scene.visible = true;
+    sableMixer.stopAllAction();
+    sableActs[0].play();
+    break;
+  }
+  }
+  level++;
+}
+
 export function dance() {
-  mixer.stopAllAction();
-  acts[5].play();
+  if  (level < 2 ) {
+    pikaMixer.stopAllAction();
+    pikaActs[5].play();
+  } else {
+    sableMixer.stopAllAction();
+    sableActs[5].play();
+  }
 }
 
 export function idle() {
-  mixer.stopAllAction();
-  acts[0].play();
-}
-
-export async function upgrade() {
-  scene.remove(scene.children[0]);
-  pika = await glb.loadAsync('pika.glb');
-  scene.add(pika.scene);
-  pika.scene.children[0].scale.setScalar(1);
-  const pikaMesh = scene.children[1].children[0].children[0];
-  // @ts-expect-error three isn't type-safe
-  pikaMesh.children.forEach((child) => child.material.metalness = 0);
+  if  (level < 2 ) {
+    pikaMixer.stopAllAction();
+    pikaActs[0].play();
+  } else {
+    sableMixer.stopAllAction();
+    sableActs[0].play();
+  }
 }
 
 let frameTimestamp = 0;
 function animate(timestamp: number) {
   pika.scene.rotation.y += .025;
-  mixer.update((frameTimestamp - timestamp)/1000);
+  pikaMixer.update((frameTimestamp - timestamp)/1000);
+  sableMixer.update((frameTimestamp - timestamp)/1000);
   
   requestAnimationFrame( animate );
   renderer.render( scene, camera );
