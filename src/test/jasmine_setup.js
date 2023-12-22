@@ -1,11 +1,11 @@
 import jasmineRequire from 'jasmine-core/lib/jasmine-core/jasmine';
-// import { sandboxGlobal } from '../executer/executer';
 
 export default function initJasmine() {
   const jasmine = jasmineRequire.core(jasmineRequire);
   // jasmine.getGlobal = () => sandboxGlobal;
   jasmine.getGlobal = () => window;
   const env = jasmine.getEnv();
+  /** @type {JsApiReporter} */
   const rep = new jasmine.JsApiReporter({ timer: new jasmine.Timer() });
   env.addReporter(rep);
   const jasmineInterface = jasmineRequire.interface(jasmine, env);

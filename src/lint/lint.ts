@@ -3,12 +3,16 @@
 // MODIFIED by KooShnoo, Dec 14 2023
 // see the original source at https://github.com/quick-lint/quick-lint-js/
 
+import { Position } from 'monaco-editor';
 import createProcessFactoryAsync, { DiagnosticSeverity } from './quick-lint-js';
 
 const factory = await createProcessFactoryAsync();
 const qljsProcess = await factory.createProcessAsync();
 
 const quickLintDoc = await qljsProcess.createDocumentForWebDemoAsync();
+const configDoc = await qljsProcess.createDocumentForWebDemoAsync();
+configDoc.setText(`{"global-groups": false}`);
+quickLintDoc.setConfig(configDoc);
 
 interface LintDiagnostic {
   code: string;
@@ -23,14 +27,14 @@ export function lint(code: string) {
   const diagnostics: LintDiagnostic[] = quickLintDoc.lint();
   return diagnostics;
 }
-// TODO cleanup
-// documentForWebDemo.dispose();
 
-export function formatDiagnostic(diagnostic: LintDiagnostic) {
-  return `web demo: ${diagnostic.begin}-${diagnostic.end}: ${severityString(diagnostic.severity)}: ${diagnostic.message}`;
+export function formatDiagnostics(diagnostics: LintDiagnostic[], pos: (ofs: number) => Position, fileName:string) {
+  return diagnostics.map(d => 
+    `${d.message} in ${fileName}.js:${pos(d.begin).lineNumber}:${pos(d.begin).column}`
+  ).join('\n');
 }
 
-function severityString(severity: number) {
+function _severityString(severity: number) {
   switch (severity) {
   case DiagnosticSeverity.ERROR:
     return "error";

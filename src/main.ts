@@ -1,7 +1,7 @@
 import './styles/main.css';
 import * as monaco from 'monaco-editor';
 import './webWorkerShim';
-// import { lint, formatDiagnostic } from './lint/lint';
+import { lint, formatDiagnostics } from './lint/lint';
 // import * as manifest from '@exercism/javascript/config.json';
 import testCode, { formatSpecs } from './test/test';
 import { idle, dance, upgrade } from './three/scene';
@@ -30,19 +30,26 @@ const editor = monaco.editor.create(editor_element, {
 let current_problem = {problem: await loadProblem(problems[0].slug, editor, instructions_element), index: 0};
 
 async function onWriteCode() {
+  // run lints
+  const lints = lint(editor.getValue());
+  if (lints.length > 0) {
+    const pos = editor.getModel()!.getPositionAt.bind(editor.getModel());
+    errors_element.innerText = formatDiagnostics(lints, pos, problems[current_problem.index].slug);
+    return;
+  }
+  // if the lints pass, run specs
   const report = await testCode(editor.getValue(), current_problem.problem.spec);
-  if (report.runDetails.overallStatus === 'passed') return successful();
-  const failures = formatSpecs(report);
-  errors_element.innerHTML = '';
-  errors_element.appendChild(failures);
-  // console.log(report);
+  // if the specs pass, unlock next stage
+  if (report.runDetails.overallStatus === 'passed') return onPass();
+  errors_element.innerText = formatSpecs(report);
 }
 
-function successful() {
+function onPass() {
   editor.updateOptions({ readOnly: true });
-  errors_element.style.display = 'none';
+  // Hide errors
+  errors_element.parentElement!.style.display = 'none';
+  // Unlock next level
   next_problem_element.hidden = false;
-  // alert('you passed! 🥳');
   dance();
 }
 
@@ -51,7 +58,7 @@ async function nextProblem() {
   current_problem = {problem: await loadProblem(problems[next_index].slug, editor, instructions_element), index: next_index};
   editor.updateOptions({ readOnly: false });
   await onWriteCode();
-  errors_element.style.display = 'flex';
+  errors_element.parentElement!.style.display = 'flex';
   next_problem_element.hidden = true;
   idle();
   upgrade();

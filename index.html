@@ -32,7 +32,7 @@
       <div class=" flex justify-between">
         <div class="flex gap-2 items-center">
           <img class="h-8 md:h-12 bg-white p-1 rounded-lg" src="https://watch.pokemon.com/images/PTVLogo.svg" alt="pokemon">
-          <button id="title" class="text-left md:text-center md:text-4xl font-bold cursor-pointer hover:underline">Pokémon Programming!</button>
+          <button id="title" class="text-left md:text-4xl font-bold cursor-pointer hover:underline">Pokémon Programming!</button>
         </div>
         <div class="flex gap-2 items-center">
           <a target="_blank" href="https://github.com/KooShnoo">
@@ -49,7 +49,9 @@
             <h1>Loading...</h1>
             <noscript>Please enable Javascript.</noscript>
           </div>
-          <div id="errors" class="bg-[#f85149]/60 max-h-[25%] p-2 rounded-lg flex items-center justify-center"></div>
+          <div class="bg-[#f85149]/60 max-h-[25%] p-2 rounded-lg flex items-center justify-center">
+            <div id="errors" class="h-full overflow-scroll"></div>
+          </div>
           <button id="next" class="bg-green-600/50 p-2 rounded-lg hover:bg-green-800/50" hidden>Next Problem</button>
         </div>
         <div class="flex-1 relative">
