@@ -1,3 +1,5 @@
+# I love wasting microsoft github's compute power! :D
+
 name: Deploy site to Github Pages
 
 on:
@@ -50,6 +52,11 @@ jobs:
   deploy:
     name: Deploy
     needs: build
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      actions: read
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
