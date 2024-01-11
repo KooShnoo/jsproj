@@ -1,5 +1,5 @@
 # Pokémon Programming!
-[**Pokémon Programming**](https://pokemon-programming.netlify.app/) (temporary name) will be a website that gamifies
+[**Pokémon Programming**](https://kooshnoo.github.io/pokemon-programming/) will be a website that gamifies
 learning programming! Development is currently in progress.
 
 ## Features
@@ -7,12 +7,10 @@ learning programming! Development is currently in progress.
 ### Write code!
 Use the monaco code editor from VSCode to solve a variety of programmeng challenges, ranging from baby mode to
 Einstein mode.
-### Get tips!
-Program alongside
-a pet who will give you helpful tips when you struggle. 
 ### Watch your pokémon!
-Watch your pokémon as you program!
-
+Program alongside a pokémon pet who will watch you when you struggle.
+### Get feedback!
+Read the errors that the tests provide to help see why your code won't work.
 
 ## Mockup
 ![mockup](https://i.postimg.cc/CMHmbDxZ/Screenshot-2023-12-13-at-17-35-09.png)
@@ -21,6 +19,8 @@ Watch your pokémon as you program!
 - Monaco
 - Three.js
 - Jasmine
-- ... (more tbd)
+- Exercism
+- Marked
+- quick-lint-js
 
 
