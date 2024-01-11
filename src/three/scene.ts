@@ -16,6 +16,7 @@ window.addEventListener('resize', () => {
 });
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, threeWidth / threeHeight, 0.1, 1000);
+const clock = new THREE.Clock();
 
 const renderer = new THREE.WebGLRenderer({alpha: true});
 renderer.setSize(threeWidth, threeHeight);
@@ -108,14 +109,12 @@ export function idle() {
   }
 }
 
-let frameTimestamp = 0;
-function animate(timestamp: number) {
+function animate() {
   pika.scene.rotation.y += .025;
-  pikaMixer.update((frameTimestamp - timestamp)/1000);
-  sableMixer.update((frameTimestamp - timestamp)/1000);
+  pikaMixer.update(clock.getDelta());
+  sableMixer.update(clock.getDelta());
   
   requestAnimationFrame( animate );
   renderer.render( scene, camera );
-  frameTimestamp = timestamp;
 }
-animate(0);
+animate();
