@@ -12,13 +12,13 @@
     <meta property="og:description" content="Program with Pokémon® friends!">
     <meta property="og:locale" content="en_US">
     <!-- IP theft from big companies is fine, probably. -->
-    <link rel="shortcut icon" href="https://watch.pokemon.com/images/PTVLogo.svg">
+    <link rel="shortcut icon" href="PTVLogo.svg">
     <script type="module" src="/src/main.ts"></script>
     <title>Pokémon Programming</title>
   </head>
 
   <body class="w-screen h-screen bg-editor-background text-white">
-    <div id="about" class="w-full h-full flex bg-black/50 justify-center items-center fixed z-50 hidden">
+    <div id="about" class="w-full h-full flex bg-black/50 justify-center items-center fixed z-50">
       <div class="bg-white p-2 box rounded-lg">
 
         <div class="p-4 text-black font-[Pokemon] flex gap-2 flex-col framed box-border">
@@ -29,13 +29,13 @@
     </div>
 
     <div class="w-full h-full flex flex-col gap-4 p-8">
-      <div class=" flex justify-between">
-        <div class="flex gap-2 items-center">
-          <img class="h-8 md:h-12 bg-white p-1 rounded-lg" src="https://watch.pokemon.com/images/PTVLogo.svg" alt="pokemon">
-          <button id="title" class="text-left md:text-4xl font-bold cursor-pointer hover:underline">Pokémon Programming!</button>
+      <div class="flex justify-between">
+        <div id="title" class="flex gap-2 items-center cursor-pointer group">
+          <img class="h-8 md:h-12 bg-white p-1 rounded-lg" src="PTVLogo.svg" alt="pokemon">
+          <button class="text-left md:text-4xl font-bold group-hover:underline">Pokémon Programming!</button>
         </div>
         <div class="flex gap-2 items-center">
-          <a target="_blank" href="https://github.com/KooShnoo">
+          <a target="_blank" href="https://github.com/KooShnoo/pokemon-programming">
             <img class="h-6 md:h-8 hover:bluified transition-[filter] duration-75" src="github.svg" alt="github">
           </a>
           <a target="_blank" href="https://www.linkedin.com/in/ishan-chawla/">
