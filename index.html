@@ -3,27 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Program with Pokémon® friends!">
+    <meta name="description" content="Program with Pokémon friends!">
     <meta name="apple-mobile-web-app-title" content="Pokémon Programming">
     <meta property="og:title" content="Pokémon Programming">
     <meta property="og:type" content="website">
     <meta property="og:image" content="/pika/images/pm0025_00_Mouth1.png">
     <meta property="og:site_name" content="Pokémon Programming">
-    <meta property="og:description" content="Program with Pokémon® friends!">
+    <meta property="og:description" content="Program with Pokémon friends!">
     <meta property="og:locale" content="en_US">
     <!-- IP theft from big companies is fine, probably. -->
-    <link rel="shortcut icon" href="PTVLogo.svg">
+    <link rel="shortcut icon" href="PTVLogoBG.svg">
     <script type="module" src="/src/main.ts"></script>
     <title>Pokémon Programming</title>
   </head>
 
   <body class="w-screen h-screen bg-editor-background text-white">
     <div id="about" class="w-full h-full flex bg-black/50 justify-center items-center fixed z-50">
-      <div class="bg-white p-2 box rounded-lg">
+      <div class="bg-white max-w-[50rem] mx-8 p-2 box rounded-lg">
 
         <div class="p-4 text-black font-[Pokemon] flex gap-2 flex-col framed box-border">
           <h1 class="text-sm md:text-3xl text-center">Pokémon Programming</h1>
-          <p class="text-xs md:text-sm" >Welcome to Pokémon programming!</p>
+          <p class="text-xs md:text-sm text-center">
+            Welcome to Pokémon programming! 
+            <br />
+            <br />
+            On the left are the instructions for your first programming challenge. 
+            On the right is a code editor to write your solution for the challenge.
+            But most importantly, a cute Pokémon friend is here too!
+            Do your best on the programming challenges to cheer up your Pokémon pal.
+          </p>
         </div>
       </div>
     </div>
@@ -54,7 +62,7 @@
           </div>
           <button id="next" class="bg-green-600/50 p-2 rounded-lg hover:bg-green-800/50" hidden>Next Problem</button>
         </div>
-        <div class="flex-1 relative">
+        <div class="min-h-[50vh] flex-1 relative">
           <div id="three" class="w-full h-full absolute top-0 left-0 pointer-events-none z-20"></div>
           <div id="editor" class="w-full h-full absolute top-0 left-0 border-2 border-widget-border rounded-lg overflow-hidden"></div>
         </div>

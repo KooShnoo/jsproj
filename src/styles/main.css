@@ -47,11 +47,10 @@
 @layer utilities {
   .framed {
     border-width: 21px;
-  border-image: url(https://raw.githubusercontent.com/luttje/css-pokemon-gameboy/main/src/images/frame-hd.png) 42 round;
+    border-image: url(https://raw.githubusercontent.com/luttje/css-pokemon-gameboy/main/src/images/frame-hd.png) 42 round;
   }
   
   .bluified {
-    color: aliceblue;
     filter: brightness(0) saturate(100%) invert(41%) sepia(40%) saturate(1844%) hue-rotate(193deg) brightness(101%) contrast(93%);
   }
 }

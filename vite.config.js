@@ -1,3 +1,4 @@
+/** @type {import('vite').UserConfig} */
 export default {
   build: {
     minify: 'esbuild',
@@ -5,5 +6,8 @@ export default {
   },
   // vite assumes your website is at the root url path, but we are working out of our gh-pages url:
   // https://kooshnoo.github.io/pokemon-programming/
-  base: '/pokemon-programming/'
+  base: '/pokemon-programming/',
+  server: {
+    hmr: false,
+  },
 };
