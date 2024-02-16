@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/PTVLogoBG.svg" width=200px> 
+  <a href="https://kooshnoo.github.io/pokemon-programming/"><img src="./public/PTVLogoBG.svg" width=200px></a>
 </div>
 
 
